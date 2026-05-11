@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Logger | Real-Time Monitor</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>Security Logger</h1>
+                    <p>Real-Time OS Monitor</p>
+                </div>
+            </div>
+            <div class="status-indicator">
+                <span class="status-dot" id="status-dot"></span>
+                <span id="status-text">System Ready</span>
+            </div>
+        </header>
+
+        <!-- Dashboard -->
+        <div class="dashboard">
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card critical-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Critical Events</h3>
+                        <p class="stat-number" id="critical-count">0</p>
+                    </div>
+                </div>
+                <div class="stat-card high-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-skull-crossbones"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>High Severity</h3>
+                        <p class="stat-number" id="high-count">0</p>
+                    </div>
+                </div>
+                <div class="stat-card medium-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Medium</h3>
+                        <p class="stat-number" id="medium-count">0</p>
+                    </div>
+                </div>
+                <div class="stat-card total-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Total Events</h3>
+                        <p class="stat-number" id="total-logs">0</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Risk Analysis -->
+            <div class="risk-section">
+                <div class="risk-card">
+                    <h3><i class="fas fa-chart-line"></i> Security Risk Score</h3>
+                    <div class="risk-meter">
+                        <div class="risk-fill" id="risk-fill"></div>
+                    </div>
+                    <div class="risk-info">
+                        <div class="risk-value" id="risk-value">0</div>
+                        <div class="risk-label" id="risk-label">Low Risk</div>
+                    </div>
+                </div>
+
+                <div class="vulnerability-card">
+                    <h3><i class="fas fa-bug"></i> Vulnerability Analysis</h3>
+                    <div class="vulnerability-list" id="vulnerability-list">
+                        <p class="no-issues">No vulnerabilities detected</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="controls-section">
+                <div class="control-buttons">
+                    <button class="btn btn-start" id="start-monitoring">
+                        <i class="fas fa-play"></i> Start Monitoring
+                    </button>
+                    <button class="btn btn-stop" id="stop-monitoring">
+                        <i class="fas fa-stop"></i> Stop
+                    </button>
+                    <button class="btn btn-scan" id="analyze-btn">
+                        <i class="fas fa-search"></i> Security Scan
+                    </button>
+                    <button class="btn btn-export" id="export-logs">
+                        <i class="fas fa-download"></i> Export Logs
+                    </button>
+                    <button class="btn btn-simulate" id="simulate-attack">
+                        <i class="fas fa-bolt"></i> Simulate Attack
+                    </button>
+                    <button class="btn btn-clear" id="clear-logs">
+                        <i class="fas fa-trash"></i> Clear Logs
+                    </button>
+                </div>
+
+                <div class="filter-controls">
+                    <div class="filter-group">
+                        <label for="severity-filter">Severity Filter:</label>
+                        <select id="severity-filter">
+                            <option value="all">All Severities</option>
+                            <option value="critical">Critical</option>
+                            <option value="high">High</option>
+                            <option value="medium">Medium</option>
+                            <option value="low">Low</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="type-filter">Event Type:</label>
+                        <select id="type-filter">
+                            <option value="all">All Types</option>
+                            <option value="authentication">Authentication</option>
+                            <option value="network">Network</option>
+                            <option value="file">File System</option>
+                            <option value="process">Process</option>
+                            <option value="threat">Threat</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logs Table -->
+            <div class="logs-section">
+                <div class="logs-header">
+                    <h2><i class="fas fa-list-alt"></i> Security Event Logs</h2>
+                    <div class="logs-info">
+                        Showing <span id="visible-logs">0</span> of <span id="total-events">0</span> events
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table class="logs-table">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Type</th>
+                                <th>Severity</th>
+                                <th>Description</th>
+                                <th>Source</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="logs-body">
+                            <!-- Logs will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- System Info -->
+            <div class="system-info">
+                <h3><i class="fas fa-info-circle"></i> System Information</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Browser:</span>
+                        <span class="info-value" id="user-agent">Loading...</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Platform:</span>
+                        <span class="info-value" id="platform">Loading...</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Memory Usage:</span>
+                        <span class="info-value" id="memory-usage">Calculating...</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Last Scan:</span>
+                        <span class="info-value" id="last-scan">Never</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Security Sentinel | Real-Time OS Security Monitor | Simulation Mode</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
