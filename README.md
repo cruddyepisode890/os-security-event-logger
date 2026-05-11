@@ -10,7 +10,7 @@
 
 Because it’s static, no build step or backend is required.
 
-## Features
+## Features 
 - Real-time (simulated) security event generation
 - Severity-based counters (Critical / High / Medium / Low)
 - Security Risk Score meter
