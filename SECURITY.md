@@ -10,7 +10,7 @@ If you believe you’ve found a security-related issue (e.g., a bug that could e
   - What you expected to happen
   - What actually happened
   - Steps to reproduce (if applicable)
-  - Suggested fix or mitigations (if you have them) 
+  - Suggested fix or mitigations (if you have them)
 
 ## Priority
 Issues that may involve unsafe code execution or data exposure will be reviewed as a priority.
