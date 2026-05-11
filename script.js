@@ -1,4 +1,4 @@
-class SecurityLogger {
+class SecurityLogger { 
     constructor() {
         this.logs = [];
         this.monitoringInterval = null;
