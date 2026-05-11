@@ -37,5 +37,5 @@ Because it’s static, no build step or backend is required.
 ## Reporting issues
 If you find bugs or want improvements, open an issue using the GitHub Issues tab.
 
-## Contributing
+## Contributin
 See [CONTRIBUTING.md](./CONTRIBUTING.md).
